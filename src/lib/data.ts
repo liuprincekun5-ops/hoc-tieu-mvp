@@ -3,7 +3,8 @@ import catalogJson from '../data/catalog.json'
 import mapJson from '../data/xiao-g-8.json'
 import type { AfterTemplate, TieuCatalog, TieuMap, TieuPiece } from '../types/tieu'
 
-const BASE = new URL('data/', import.meta.env.BASE_URL).pathname.replace(/\/$/, '')
+/** Vite BASE_URL is a path like `/hoc-tieu-mvp/` — not a full URL */
+const BASE = `${import.meta.env.BASE_URL}data`.replace(/([^:]\/)\/+/g, '$1')
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}/${path}`)
