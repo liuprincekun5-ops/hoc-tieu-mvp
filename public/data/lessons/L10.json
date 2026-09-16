@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L10",
+  "title": "Bài 10 · Sol – La – Si",
+  "tier": 2,
+  "unlocksAfter": "L09",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 54,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Sol", "La", "Si", "rest"],
+  "goal": "Cụm tay trái: một ngón một nốt.",
+  "events": [
+    { "tBeat": 0, "key": "Sol" },
+    { "tBeat": 2, "key": "La" },
+    { "tBeat": 4, "key": "Si" },
+    { "tBeat": 6, "key": "La" },
+    { "tBeat": 8, "key": "Sol" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Không nhấc hai lỗ cùng lúc nhầm.",
+    "items": [
+      { "atBeat": 2, "title": "Sol → La", "text": "Chỉ lỗ 5." },
+      { "atBeat": 4, "title": "La → Si", "text": "Thêm lỗ 6." },
+      { "atBeat": 8, "title": "Si → Sol", "text": "Đặt lại lỗ 5 và 6 nhẹ, không đập." }
+    ]
+  }
+}

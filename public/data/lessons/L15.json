@@ -1,0 +1,33 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L15",
+  "title": "Bài 15 · Câu có Si",
+  "tier": 3,
+  "unlocksAfter": "L14",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 50,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Sol", "La", "Si", "rest"],
+  "goal": "Đỉnh câu là Si. Hơi hẹp, không thổi mạnh.",
+  "copyrightNote": "Câu soạn cho giáo trình.",
+  "events": [
+    { "tBeat": 0, "key": "Sol" },
+    { "tBeat": 2, "key": "La" },
+    { "tBeat": 4, "key": "Si" },
+    { "tBeat": 6, "key": "La" },
+    { "tBeat": 8, "key": "Sol" },
+    { "tBeat": 10, "key": "La" },
+    { "tBeat": 12, "key": "Sol" },
+    { "tBeat": 14, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Về Sol: đặt đủ lỗ 5 và 6.",
+    "items": [
+      { "atBeat": 4, "title": "Si", "text": "Hơi hẹp. Lỗ 6 mở sạch." },
+      { "atBeat": 8, "title": "Về Sol lần 1", "text": "Đặt lỗ 5 + 6 cùng lúc, nhẹ." },
+      { "atBeat": 14, "title": "Hơi", "text": "Tắt vòng thổi. Hết bài tầng câu." }
+    ]
+  }
+}

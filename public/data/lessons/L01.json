@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L01",
+  "title": "Bài 01 · Ra tiếng",
+  "tier": 0,
+  "unlocksAfter": null,
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 50,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["blow", "rest"],
+  "goal": "Ra tiếng đều 4–6 giây, không đứt. Chưa cần đúng cao độ.",
+  "events": [
+    { "tBeat": 0, "key": "blow" },
+    { "tBeat": 2, "key": "blow" },
+    { "tBeat": 4, "key": "rest" },
+    { "tBeat": 6, "key": "blow" },
+    { "tBeat": 8, "key": "blow" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Có tiếng ổn là đạt. Chưa chấm Rê.",
+    "items": [
+      { "atBeat": 0, "title": "Môi", "text": "Ôm lệch lỗ thổi, không thổi thẳng vào ống như chai." },
+      { "atBeat": 0, "title": "Hơi", "text": "Má không phồng. Hơi từ bụng." },
+      { "atBeat": 4, "title": "Lấy hơi", "text": "Tắt vòng lỗ thổi. Đừng thổi nốt phụ." }
+    ]
+  }
+}

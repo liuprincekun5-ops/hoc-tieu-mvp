@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L16",
+  "title": "Bài 16 · Rê cao (5̇)",
+  "tier": 3,
+  "unlocksAfter": "L15",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 46,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Re2", "rest"],
+  "goal": "Cùng ngón Rê, miệng hẹp hơn. Không đổi lỗ.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Re" },
+    { "tBeat": 4, "key": "Re2" },
+    { "tBeat": 6, "key": "Re2" },
+    { "tBeat": 8, "key": "Re" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "LED giống Rê. Chỉ vòng hơi đổi. Chưa ổn thì ở lại bài 02–14.",
+    "items": [
+      { "atBeat": 4, "title": "Đổi hơi", "text": "Khe hơi hẹp, hướng hơi hơi lên. Không thổi mạnh hơn." },
+      { "atBeat": 4, "title": "Lỗ", "text": "Vẫn 8 lỗ vàng. Nếu đổi ngón là sai bài này." },
+      { "atBeat": 8, "title": "Về Rê thấp", "text": "Nới khe hơi. Giữ nguyên ngón." }
+    ]
+  }
+}

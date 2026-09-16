@@ -1,0 +1,49 @@
+{
+  "schema": "tieu.map.v1",
+  "instrumentId": "xiao_g_8",
+  "name": "Tiêu 8 lỗ hơi G",
+  "gripDefault": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "holeOrder": [8, 7, 6, 5, 4, 3, 2, 1],
+  "holeMeta": {
+    "8": { "face": "back", "finger": "left_thumb", "labelVi": "Ngón cái trái (mặt sau)" },
+    "7": { "face": "front", "finger": "left_index", "labelVi": "Ngón trỏ trái" },
+    "6": { "face": "front", "finger": "left_middle", "labelVi": "Ngón giữa trái" },
+    "5": { "face": "front", "finger": "left_ring", "labelVi": "Ngón áp út trái" },
+    "4": { "face": "front", "finger": "right_index", "labelVi": "Ngón trỏ phải" },
+    "3": { "face": "front", "finger": "right_middle", "labelVi": "Ngón giữa phải" },
+    "2": { "face": "front", "finger": "right_ring", "labelVi": "Ngón áp út phải" },
+    "1": { "face": "front", "finger": "right_pinky", "labelVi": "Ngón út phải" }
+  },
+  "taughtIn16": {
+    "rest": { "jianpu": "0", "pitch": null, "freqHz": null, "holes": [0,0,0,0,0,0,0,0], "embouchure": "off", "playable": true },
+    "blow": { "jianpu": null, "pitch": "D4", "freqHz": 293.66, "holes": [1,1,1,1,1,1,1,1], "embouchure": "loose", "playable": true, "scorePitch": false },
+    "Re":   { "jianpu": "5", "pitch": "D4", "freqHz": 293.66, "holes": [1,1,1,1,1,1,1,1], "embouchure": "normal", "playable": true },
+    "Mi":   { "jianpu": "6", "pitch": "E4", "freqHz": 329.63, "holes": [1,1,1,1,1,1,1,0], "embouchure": "normal", "playable": true },
+    "Fi":   { "jianpu": "7", "pitch": "F#4", "freqHz": 369.99, "holes": [1,1,1,1,1,0,0,0], "embouchure": "normal", "playable": true },
+    "Sol":  { "jianpu": "1", "pitch": "G4", "freqHz": 392.00, "holes": [1,1,1,1,0,0,0,0], "embouchure": "normal", "playable": true },
+    "La":   { "jianpu": "2", "pitch": "A4", "freqHz": 440.00, "holes": [1,1,1,0,0,0,0,0], "embouchure": "normal", "playable": true },
+    "Si":   { "jianpu": "3", "pitch": "B4", "freqHz": 493.88, "holes": [1,1,0,0,0,0,0,0], "embouchure": "normal", "playable": true },
+    "Re2":  { "jianpu": "5'", "jianpuAlt": ["5.", "5̇"], "pitch": "D5", "freqHz": 587.33, "holes": [1,1,1,1,1,1,1,1], "embouchure": "narrow", "playable": true }
+  },
+  "notTaughtIn16": {
+    "Fa":    { "jianpu": "b7", "pitch": "F4", "holes": [1,1,1,1,1,1,0,1], "playable": false, "reason": "half_step_deferred" },
+    "Sols":  { "jianpu": "#1", "pitch": "G#4", "holes": [1,1,1,0,1,0,0,0], "playable": false, "reason": "half_step_deferred" },
+    "Sib":   { "jianpu": "b3", "pitch": "Bb4", "holes": [1,1,0,1,0,0,0,0], "playable": false, "reason": "half_step_deferred" },
+    "Do":    { "jianpu": "4", "pitch": "C5", "holes": [0,1,1,1,0,0,0,0], "playable": false, "reason": "fork_deferred" },
+    "Dos":   { "jianpu": "#4", "pitch": "C#5", "holes": [0,1,1,0,0,0,0,0], "playable": false, "reason": "half_step_deferred" },
+    "Mi2":   { "jianpu": "6'", "pitch": "E5", "holes": null, "playable": false, "reason": "overblow_deferred" }
+  },
+  "jianpuToKey": {
+    "0": "rest",
+    "5": "Re",
+    "6": "Mi",
+    "7": "Fi",
+    "1": "Sol",
+    "2": "La",
+    "3": "Si",
+    "5'": "Re2",
+    "5.": "Re2",
+    "5̇": "Re2"
+  }
+}

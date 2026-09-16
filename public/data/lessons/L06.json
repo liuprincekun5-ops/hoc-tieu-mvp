@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L06",
+  "title": "Bài 06 · Rê – Mi – Sol",
+  "tier": 1,
+  "unlocksAfter": "L05",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 52,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Mi", "Sol"],
+  "goal": "Ba nốt, tay phải lần lượt. Chưa nghỉ giữa câu.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Mi" },
+    { "tBeat": 4, "key": "Sol" },
+    { "tBeat": 6, "key": "Sol" },
+    { "tBeat": 8, "key": "Mi" },
+    { "tBeat": 10, "key": "Re" }
+  ],
+  "after": {
+    "intro": "Rê→Mi một ngón. Mi→Sol ba ngón còn lại của tay phải.",
+    "items": [
+      { "atBeat": 2, "title": "Rê → Mi", "text": "Chỉ lỗ 1 đổi vàng sang xanh." },
+      { "atBeat": 4, "title": "Mi → Sol", "text": "Mở lỗ 2, 3, 4. Đừng nhấc tay trái." },
+      { "atBeat": 10, "title": "Hết câu", "text": "Lượt 2 mới được rest. Đừng tự chèn hơi giữa bài này." }
+    ]
+  }
+}

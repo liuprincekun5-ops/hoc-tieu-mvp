@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L11",
+  "title": "Bài 11 · Nốt Fi (7) — cầu Rê–Sol",
+  "tier": 3,
+  "unlocksAfter": "L10",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 50,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Mi", "Fi", "Sol"],
+  "goal": "Nốt 7 để đi gam. Lỗ 4 vẫn bịt, lỗ 3-2-1 mở.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Mi" },
+    { "tBeat": 4, "key": "Fi" },
+    { "tBeat": 6, "key": "Sol" },
+    { "tBeat": 8, "key": "Fi" },
+    { "tBeat": 10, "key": "Mi" }
+  ],
+  "after": {
+    "intro": "Fi dễ cao. Hơi nhẹ.",
+    "items": [
+      { "atBeat": 4, "title": "Ngón Fi", "text": "Lỗ 4 (trỏ phải) vàng. Lỗ 3, 2, 1 xanh." },
+      { "atBeat": 6, "title": "Fi → Sol", "text": "Nhấc thêm lỗ 4." },
+      { "atBeat": 8, "title": "Sol → Fi", "text": "Đặt lại lỗ 4, đừng kéo theo lỗ 5." }
+    ]
+  }
+}
