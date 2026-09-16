@@ -1,0 +1,15 @@
+{
+  "schema": "tieu.after.v1",
+  "slots": [
+    { "id": "finger", "labelVi": "Ngón / lỗ" },
+    { "id": "breath", "labelVi": "Hơi" },
+    { "id": "common_error", "labelVi": "Sai thường gặp" },
+    { "id": "replay", "labelVi": "Xem lại đoạn", "action": "replay_beats" }
+  ],
+  "rules": [
+    "Tối đa 4 mảnh mỗi bài.",
+    "Mỗi mảnh gắn atBeat của sự kiện vừa xảy ra.",
+    "Không giảng cả bài thành tường chữ.",
+    "replay chỉ phát 2–4 beat quanh atBeat."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "tieu.catalog.v1",
+  "instrument": "xiao_g_8",
+  "courseId": "beginner_g_16",
+  "title": "Tiêu 8 lỗ hơi G · 16 bài người mới",
+  "unlockRule": "sequential",
+  "tiers": [
+    { "id": 0, "name": "Ống và hơi", "lessons": ["L01", "L02"] },
+    { "id": 1, "name": "Tay phải", "lessons": ["L03", "L04", "L05", "L06"] },
+    { "id": 2, "name": "Tay trái", "lessons": ["L07", "L08", "L09", "L10"] },
+    { "id": 3, "name": "Câu và hơi trong câu", "lessons": ["L11", "L12", "L13", "L14", "L15", "L16"] }
+  ],
+  "lessons": [
+    { "id": "L01", "file": "lessons/L01.json", "title": "Ra tiếng" },
+    { "id": "L02", "file": "lessons/L02.json", "title": "Nốt ống Rê (5)" },
+    { "id": "L03", "file": "lessons/L03.json", "title": "Nốt Sol (1)" },
+    { "id": "L04", "file": "lessons/L04.json", "title": "Rê ↔ Sol" },
+    { "id": "L05", "file": "lessons/L05.json", "title": "Nốt Mi (6)" },
+    { "id": "L06", "file": "lessons/L06.json", "title": "Rê – Mi – Sol" },
+    { "id": "L07", "file": "lessons/L07.json", "title": "Nốt La (2)" },
+    { "id": "L08", "file": "lessons/L08.json", "title": "Sol ↔ La" },
+    { "id": "L09", "file": "lessons/L09.json", "title": "Nốt Si (3)" },
+    { "id": "L10", "file": "lessons/L10.json", "title": "Sol – La – Si" },
+    { "id": "L11", "file": "lessons/L11.json", "title": "Nốt Fi (7)" },
+    { "id": "L12", "file": "lessons/L12.json", "title": "Gam chậm" },
+    { "id": "L13", "file": "lessons/L13.json", "title": "Đặt hơi trong câu" },
+    { "id": "L14", "file": "lessons/L14.json", "title": "Câu 8 nốt" },
+    { "id": "L15", "file": "lessons/L15.json", "title": "Câu có Si" },
+    { "id": "L16", "file": "lessons/L16.json", "title": "Rê cao" }
+  ]
+}

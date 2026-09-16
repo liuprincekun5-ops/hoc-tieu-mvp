@@ -1,6 +1,9 @@
+import afterTemplateJson from '../data/after-template.json'
+import catalogJson from '../data/catalog.json'
+import mapJson from '../data/xiao-g-8.json'
 import type { AfterTemplate, TieuCatalog, TieuMap, TieuPiece } from '../types/tieu'
 
-const BASE = `${import.meta.env.BASE_URL}data`
+const BASE = new URL('data/', import.meta.env.BASE_URL).pathname.replace(/\/$/, '')
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(`${BASE}/${path}`)
@@ -9,15 +12,15 @@ async function fetchJson<T>(path: string): Promise<T> {
 }
 
 export function loadCatalog(): Promise<TieuCatalog> {
-  return fetchJson('catalog.json')
+  return Promise.resolve(catalogJson as TieuCatalog)
 }
 
 export function loadMap(): Promise<TieuMap> {
-  return fetchJson('xiao_g_8.map.json')
+  return Promise.resolve(mapJson as TieuMap)
 }
 
 export function loadAfterTemplate(): Promise<AfterTemplate> {
-  return fetchJson('after-template.json')
+  return Promise.resolve(afterTemplateJson as AfterTemplate)
 }
 
 export function loadLesson(file: string): Promise<TieuPiece> {
