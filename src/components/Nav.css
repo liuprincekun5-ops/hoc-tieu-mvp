@@ -68,8 +68,8 @@
 /* Desktop ≥900px: top tab bar inside the right content pane */
 @media (min-width: 900px) {
   .bottom-nav {
-    position: sticky;
-    top: 0;
+    position: relative;
+    top: auto;
     left: auto;
     bottom: auto;
     transform: none;
