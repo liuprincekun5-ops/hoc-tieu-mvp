@@ -47,3 +47,13 @@
 2. Replay cửa sổ theo `tBeat`; nếu không khớp float thì lấy nearest ±1..+2 event.
 3. Mic helper không lưu điểm, không chặn hoàn thành bài.
 4. Không thêm instrument khác; UI ghi “chỉ tiêu 8 lỗ hơi G”.
+
+## UI redesign (warm paper / MASTER.md)
+
+- Tokens from `design-system/hoc-tieu/MASTER.md`: warm paper `#FFFBEB`, amber wood primary `#B45309`, teal secondary `#0F766E`, soft clay cards (18px radius + gentle shadow).
+- Typography: Google Fonts **Be Vietnam Pro** (+ Noto Sans fallback); body 16px / lh 1.55.
+- Bottom nav: SVG icons + Vietnamese labels, ≥44px targets, safe-area inset, fixed bar with content padding.
+- Lesson rows: lock / done / open via SVG + color + label (not color-only / not emoji-only).
+- Motion: ~200ms ease-out press `scale(0.98)`; `prefers-reduced-motion` honored globally.
+- Focus rings on interactive controls; contrast-friendly muted text `#57534E`.
+- Kept all features (Nhà/Học/Phòng LED/Sau bài/Phân tích, mic, analyze). `vite` base `/hoc-tieu-mvp/` unchanged.
