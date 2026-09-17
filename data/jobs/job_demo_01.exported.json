@@ -1,0 +1,31 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "job_demo_01",
+  "title": "Bài người dùng khóa (mẫu)",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 52,
+  "beatsPerEvent": 1,
+  "sourceJob": "job_demo_01",
+  "note": "Xuất sau khi A+B+C đều locked. Dưới đây là bản giả định đã khóa đủ — dùng để thấy hình dạng piece, không phải trạng thái file analyze.",
+  "events": [
+    { "tBeat": 0.4, "key": "Re" },
+    { "tBeat": 1.2, "key": "Mi" },
+    { "tBeat": 2.0, "key": "Sol" },
+    { "tBeat": 3.0, "key": "rest" },
+    { "tBeat": 12.2, "key": "Sol" },
+    { "tBeat": 12.8, "key": "Mi" },
+    { "tBeat": 13.4, "key": "La" },
+    { "tBeat": 20.2, "key": "La" },
+    { "tBeat": 21.0, "key": "Mi" },
+    { "tBeat": 21.6, "key": "Sol" }
+  ],
+  "after": {
+    "intro": "Bản gợi ý từ file của người dùng. Không phải phổ gốc.",
+    "items": [
+      { "atBeat": 3.0, "title": "Hơi", "text": "Nghỉ sau Sol. Ống tắt đèn thổi." },
+      { "atBeat": 12.8, "title": "Ô từng trống", "text": "Người đã nhập Mi vào chỗ máy để trống." }
+    ]
+  }
+}

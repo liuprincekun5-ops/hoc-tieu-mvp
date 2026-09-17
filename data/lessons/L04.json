@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L04",
+  "title": "Bài 04 · Rê ↔ Sol",
+  "tier": 1,
+  "unlocksAfter": "L03",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 52,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Sol", "rest"],
+  "goal": "Đổi bịt hết / mở 4 lỗ dưới, không mất tiếng.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Re" },
+    { "tBeat": 4, "key": "Sol" },
+    { "tBeat": 6, "key": "Sol" },
+    { "tBeat": 8, "key": "Re" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Đổi ngón trước hơi một nhịp rất nhỏ.",
+    "items": [
+      { "atBeat": 4, "title": "Sang Sol", "text": "Mở đủ 4 lỗ dưới. Sai thường gặp: còn bịt lỗ 4." },
+      { "atBeat": 8, "title": "Về Rê", "text": "Đặt lại cả bàn phải, kiểm lỗ 1." },
+      { "atBeat": 10, "title": "Nghỉ", "text": "Thả vai. Tắt vòng lỗ thổi." }
+    ]
+  }
+}

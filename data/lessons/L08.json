@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L08",
+  "title": "Bài 08 · Sol ↔ La",
+  "tier": 2,
+  "unlocksAfter": "L07",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 56,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Sol", "La", "rest"],
+  "goal": "Chỉ một ngón trái nhấp. Tay phải mở hết.",
+  "events": [
+    { "tBeat": 0, "key": "Sol" },
+    { "tBeat": 2, "key": "Sol" },
+    { "tBeat": 4, "key": "La" },
+    { "tBeat": 6, "key": "La" },
+    { "tBeat": 8, "key": "Sol" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Hết mẫu. Chỉ một ngón trái đổi trong cả bài.",
+    "items": [
+      { "atBeat": 4, "title": "Sang La", "text": "Nhấc lỗ 5. Cái + trỏ + giữa trái vẫn đậy. Tay phải để mở." },
+      { "atBeat": 8, "title": "Về Sol", "text": "Đặt lại lỗ 5 nhẹ, đừng đập ống." },
+      { "atBeat": 10, "title": "Lấy hơi", "text": "Tắt vòng lỗ thổi. Không thổi nốt phụ cho đủ ô." }
+    ]
+  }
+}

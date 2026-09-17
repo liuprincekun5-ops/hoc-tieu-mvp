@@ -1,0 +1,249 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "user_mp3_sample_01",
+  "title": "Bài từ file MP3 của bạn (90s đầu)",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 42,
+  "beatsPerEvent": 1,
+  "keysAllowed": [
+    "Re",
+    "Mi",
+    "Fi",
+    "Sol",
+    "La",
+    "Si",
+    "Re2",
+    "rest"
+  ],
+  "sourceJob": "job_user_mp3_01",
+  "goal": "Phổ ước lượng từ file upload — kiểm tra tay trên tiêu, không thay bản gốc.",
+  "note": "AMT thô từ MP3 (~90s đầu / 281s). Map vào nốt taughtIn16 (±60 cents). Kết quả chỉ mang tính gợi ý.",
+  "events": [
+    {
+      "tBeat": 0.0,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 0.35,
+      "key": "rest"
+    },
+    {
+      "tBeat": 0.71,
+      "key": "Mi"
+    },
+    {
+      "tBeat": 0.89,
+      "key": "La"
+    },
+    {
+      "tBeat": 1.31,
+      "key": "rest"
+    },
+    {
+      "tBeat": 1.6,
+      "key": "Si"
+    },
+    {
+      "tBeat": 1.91,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 2.11,
+      "key": "rest"
+    },
+    {
+      "tBeat": 2.84,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 3.1,
+      "key": "rest"
+    },
+    {
+      "tBeat": 4.32,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 5.16,
+      "key": "rest"
+    },
+    {
+      "tBeat": 5.8,
+      "key": "La"
+    },
+    {
+      "tBeat": 6.35,
+      "key": "rest"
+    },
+    {
+      "tBeat": 6.87,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 7.02,
+      "key": "rest"
+    },
+    {
+      "tBeat": 9.21,
+      "key": "La"
+    },
+    {
+      "tBeat": 9.57,
+      "key": "rest"
+    },
+    {
+      "tBeat": 10.27,
+      "key": "Si"
+    },
+    {
+      "tBeat": 11.6,
+      "key": "rest"
+    },
+    {
+      "tBeat": 12.27,
+      "key": "Si"
+    },
+    {
+      "tBeat": 12.49,
+      "key": "rest"
+    },
+    {
+      "tBeat": 14.2,
+      "key": "La"
+    },
+    {
+      "tBeat": 14.43,
+      "key": "Si"
+    },
+    {
+      "tBeat": 14.98,
+      "key": "rest"
+    },
+    {
+      "tBeat": 15.52,
+      "key": "Mi"
+    },
+    {
+      "tBeat": 15.71,
+      "key": "Si"
+    },
+    {
+      "tBeat": 16.27,
+      "key": "rest"
+    },
+    {
+      "tBeat": 19.86,
+      "key": "Si"
+    },
+    {
+      "tBeat": 20.0,
+      "key": "rest"
+    },
+    {
+      "tBeat": 22.38,
+      "key": "Si"
+    },
+    {
+      "tBeat": 22.52,
+      "key": "rest"
+    },
+    {
+      "tBeat": 23.37,
+      "key": "La"
+    },
+    {
+      "tBeat": 23.51,
+      "key": "rest"
+    },
+    {
+      "tBeat": 23.89,
+      "key": "Si"
+    },
+    {
+      "tBeat": 24.96,
+      "key": "rest"
+    },
+    {
+      "tBeat": 25.45,
+      "key": "La"
+    },
+    {
+      "tBeat": 25.81,
+      "key": "Fi"
+    },
+    {
+      "tBeat": 26.15,
+      "key": "rest"
+    },
+    {
+      "tBeat": 26.96,
+      "key": "Si"
+    },
+    {
+      "tBeat": 27.33,
+      "key": "rest"
+    },
+    {
+      "tBeat": 36.7,
+      "key": "Si"
+    },
+    {
+      "tBeat": 36.92,
+      "key": "rest"
+    },
+    {
+      "tBeat": 49.83,
+      "key": "Mi"
+    },
+    {
+      "tBeat": 50.66,
+      "key": "rest"
+    },
+    {
+      "tBeat": 51.07,
+      "key": "Si"
+    },
+    {
+      "tBeat": 51.29,
+      "key": "rest"
+    },
+    {
+      "tBeat": 55.0,
+      "key": "Mi"
+    },
+    {
+      "tBeat": 55.21,
+      "key": "rest"
+    },
+    {
+      "tBeat": 56.01,
+      "key": "Si"
+    },
+    {
+      "tBeat": 56.23,
+      "key": "rest"
+    }
+  ],
+  "after": {
+    "intro": "Bản phổ máy ước lượng từ file bạn gửi. Hãy nghe LED rồi chỉnh lại nếu lệch.",
+    "items": [
+      {
+        "atBeat": 0.0,
+        "title": "Mở đầu",
+        "text": "Nghe vài nốt đầu — chỉnh hơi cho khớp Rê ống."
+      },
+      {
+        "atBeat": 8.81,
+        "title": "Nhịp",
+        "text": "BPM ước lượng ~42. Có thể chậm lại nếu khó theo."
+      },
+      {
+        "atBeat": 20.69,
+        "title": "Kiểm nốt",
+        "text": "Nốt lệch nửa cung đã bị ép về gam 16 bài — kiểm tay."
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L05",
+  "title": "Bài 05 · Nốt Mi (6)",
+  "tier": 1,
+  "unlocksAfter": "L04",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 54,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Mi", "rest"],
+  "goal": "Chỉ nhấc út phải (lỗ 1).",
+  "events": [
+    { "tBeat": 0, "key": "Mi" },
+    { "tBeat": 2, "key": "Mi" },
+    { "tBeat": 4, "key": "rest" },
+    { "tBeat": 6, "key": "Mi" },
+    { "tBeat": 8, "key": "Mi" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Bảy lỗ vàng, chỉ lỗ 1 xanh.",
+    "items": [
+      { "atBeat": 0, "title": "Út phải", "text": "Nhấc một ngón. Đừng kéo theo áp út phải." },
+      { "atBeat": 0, "title": "Tiếng non", "text": "Thường do lỗ 1 chưa mở sạch." },
+      { "atBeat": 4, "title": "Hơi", "text": "Giữ đều như Rê." }
+    ]
+  }
+}

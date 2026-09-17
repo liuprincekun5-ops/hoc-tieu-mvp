@@ -1,0 +1,30 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L09",
+  "title": "Bài 09 · Nốt Si (3)",
+  "tier": 2,
+  "unlocksAfter": "L08",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 54,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Si", "rest"],
+  "goal": "Nhấc thêm lỗ 6. Giữ lỗ 8 và lỗ 7.",
+  "events": [
+    { "tBeat": 0, "key": "Si" },
+    { "tBeat": 2, "key": "Si" },
+    { "tBeat": 4, "key": "rest" },
+    { "tBeat": 6, "key": "Si" },
+    { "tBeat": 8, "key": "Si" },
+    { "tBeat": 10, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Si non thường vì lỗ 6 không mở hết.",
+    "items": [
+      { "atBeat": 0, "title": "Lỗ 6", "text": "Nhấc giữa trái sạch. Đừng nửa bịt." },
+      { "atBeat": 0, "title": "Hai lỗ còn", "text": "Cái trái và trỏ trái vẫn vàng." },
+      { "atBeat": 0, "title": "Hơi", "text": "Hơi hơi hẹp hơn Sol, đừng thổi mạnh." }
+    ]
+  }
+}

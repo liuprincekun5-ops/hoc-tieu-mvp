@@ -1,0 +1,37 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L12",
+  "title": "Bài 12 · Gam chậm 5 6 7 1 2 3",
+  "tier": 3,
+  "unlocksAfter": "L11",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 48,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Mi", "Fi", "Sol", "La", "Si", "rest"],
+  "goal": "Lên một mạch, xuống một mạch. Lấy hơi đúng rest giữa hai mạch.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Mi" },
+    { "tBeat": 4, "key": "Fi" },
+    { "tBeat": 6, "key": "Sol" },
+    { "tBeat": 8, "key": "La" },
+    { "tBeat": 10, "key": "Si" },
+    { "tBeat": 12, "key": "rest" },
+    { "tBeat": 14, "key": "Si" },
+    { "tBeat": 16, "key": "La" },
+    { "tBeat": 18, "key": "Sol" },
+    { "tBeat": 20, "key": "Fi" },
+    { "tBeat": 22, "key": "Mi" },
+    { "tBeat": 24, "key": "Re" }
+  ],
+  "after": {
+    "intro": "Rest giữa lên/xuống là lấy hơi bụng, không hít vai.",
+    "items": [
+      { "atBeat": 12, "title": "Hơi giữa mạch", "text": "Tắt vòng thổi. Đừng lấp bằng nốt phụ." },
+      { "atBeat": 16, "title": "Đường xuống", "text": "Lỗ 5 và 6 dễ rối. Nhìn LED từng lỗ." },
+      { "atBeat": 24, "title": "Về ống", "text": "Bịt đủ 8 lỗ. Kiểm lỗ 8 và lỗ 1." }
+    ]
+  }
+}

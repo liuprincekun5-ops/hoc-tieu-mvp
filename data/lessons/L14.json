@@ -1,0 +1,33 @@
+{
+  "schema": "tieu.piece.v1",
+  "pieceId": "L14",
+  "title": "Bài 14 · Câu 8 nốt",
+  "tier": 3,
+  "unlocksAfter": "L13",
+  "instrument": "xiao_g_8",
+  "grip": "left_on_top",
+  "tonicSystem": "tube_as_5",
+  "bpm": 52,
+  "beatsPerEvent": 2,
+  "keysAllowed": ["Re", "Mi", "Sol", "La", "rest"],
+  "goal": "Nhớ một câu LED dài. Không phải nhạc phim.",
+  "copyrightNote": "Câu soạn cho giáo trình. Không dùng giai điệu Tiêu Cầm Khúc 1996.",
+  "events": [
+    { "tBeat": 0, "key": "Re" },
+    { "tBeat": 2, "key": "Mi" },
+    { "tBeat": 4, "key": "Sol" },
+    { "tBeat": 6, "key": "La" },
+    { "tBeat": 8, "key": "Sol" },
+    { "tBeat": 10, "key": "Mi" },
+    { "tBeat": 12, "key": "Re" },
+    { "tBeat": 14, "key": "rest" }
+  ],
+  "after": {
+    "intro": "Quen hình đèn dài. Luyến Rê–Mi nếu giữ được; chưa bắt buộc.",
+    "items": [
+      { "atBeat": 4, "title": "Nhảy Mi → Sol", "text": "Ba ngón phải còn lại mở cùng lúc." },
+      { "atBeat": 6, "title": "Sol → La", "text": "Chỉ lỗ 5." },
+      { "atBeat": 14, "title": "Kết", "text": "Nghỉ đủ. Đây không phải phổ phim 1996." }
+    ]
+  }
+}
