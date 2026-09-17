@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
   MAX_RERUN,
   adoptDemoAnalyze,
@@ -25,11 +25,51 @@ interface Props {
 
 const NOTE_CHOICES = ['Re', 'Mi', 'Fi', 'Sol', 'La', 'Si', 'Re2', 'rest'] as const;
 
+function shortFilename(name: string, max = 32): string {
+  if (name.length <= max) return name;
+  const dot = name.lastIndexOf('.');
+  const ext = dot > 0 ? name.slice(dot) : '';
+  const base = dot > 0 ? name.slice(0, dot) : name;
+  const keep = Math.max(10, max - ext.length - 1);
+  return `${base.slice(0, keep)}…${ext}`;
+}
+
+function formatDuration(ms: number): string {
+  const sec = Math.max(0, Math.round(ms / 1000));
+  if (sec < 60) return `${sec}s`;
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+function statusChipClass(status: string): string {
+  switch (status) {
+    case 'locked':
+      return 'analyze-chip analyze-chip--locked';
+    case 'unsure':
+    case 'user_edited':
+      return 'analyze-chip analyze-chip--unsure';
+    case 'empty':
+      return 'analyze-chip analyze-chip--empty';
+    case 'skipped':
+      return 'analyze-chip analyze-chip--skipped';
+    default:
+      return 'analyze-chip';
+  }
+}
+
+function chipLabel(status: string): string {
+  if (status === 'skipped') return 'Đã bỏ';
+  return statusLabelVi(status);
+}
+
 export function AnalyzePage({ map, onOpenInLed }: Props) {
   const [job, setJob] = useState<TieuAnalyze | null>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
   const [pickKey, setPickKey] = useState('Re');
+  const [pickedName, setPickedName] = useState<string | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const active = useMemo(() => {
     if (!job) return null;
@@ -37,10 +77,13 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
     return job.segments.find((s) => s.id === id) ?? job.segments[0] ?? null;
   }, [job]);
 
+  const step = !job ? 1 : canLockSong(job) ? 3 : 2;
+
   const startFromFile = async (file: File | null) => {
     if (!file) return;
     setBusy(true);
     setMsg(null);
+    setPickedName(file.name);
     try {
       const durationMs = await probeDurationMs(file);
       const audioId = `audio_${Date.now()}`;
@@ -60,6 +103,7 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
     try {
       const raw = await loadDemoAnalyze();
       setJob(adoptDemoAnalyze(raw));
+      setPickedName(null);
       setMsg('Đã nạp job demo gói giấy (stub).');
     } catch (e) {
       setMsg(e instanceof Error ? e.message : 'Không tải demo.');
@@ -122,30 +166,60 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
     onOpenInLed(res.piece);
   };
 
+  const lockReady = job ? canLockSong(job) : false;
+
   return (
-    <div className="page">
+    <div className="page analyze-page">
       <header className="page-head">
         <h1>Phân tích file</h1>
         <span className="badge">stub · chỉ local</span>
       </header>
 
-      <div className="card stub">
+      <nav className="analyze-steps" aria-label="Các bước phân tích">
+        <span className={`analyze-step${step === 1 ? ' is-current' : step > 1 ? ' is-done' : ''}`}>
+          <em>1</em> Chọn file
+        </span>
+        <span className="analyze-step-sep" aria-hidden>
+          ·
+        </span>
+        <span className={`analyze-step${step === 2 ? ' is-current' : step > 2 ? ' is-done' : ''}`}>
+          <em>2</em> Xử lý đoạn
+        </span>
+        <span className="analyze-step-sep" aria-hidden>
+          ·
+        </span>
+        <span className={`analyze-step${step === 3 ? ' is-current' : ''}`}>
+          <em>3</em> Khóa bài
+        </span>
+      </nav>
+
+      <div className="card stub analyze-stub">
         <strong>Thử nghiệm / stub</strong>
-        <p className="muted">
-          Không có engine nhận dạng thật. Audio chỉ lưu trên máy (IndexedDB).
-          Chỉ tiêu 8 lỗ hơi G — không nửa cung, không nhạc phim.
+        <p className="muted tiny">
+          Không có engine nhận dạng thật. Audio chỉ lưu trên máy (IndexedDB). Chỉ
+          tiêu 8 lỗ hơi G — không nửa cung, không nhạc phim.
         </p>
       </div>
 
-      <div className="card">
+      <div className="card analyze-card">
         <h3>1. Chọn file bạn sở hữu</h3>
         <input
+          ref={fileRef}
           type="file"
           accept="audio/*,.wav,.mp3,.m4a,.ogg"
           disabled={busy}
+          className="analyze-file-native"
           onChange={(e) => void startFromFile(e.target.files?.[0] ?? null)}
         />
-        <div className="btn-row" style={{ marginTop: 8 }}>
+        <div className="analyze-file-pick">
+          <button
+            type="button"
+            className="secondary"
+            disabled={busy}
+            onClick={() => fileRef.current?.click()}
+          >
+            Chọn file audio…
+          </button>
           <button
             type="button"
             className="secondary"
@@ -155,130 +229,178 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
             Nạp demo gói giấy
           </button>
         </div>
-        {msg && <p className="muted tiny">{msg}</p>}
+        {pickedName && (
+          <p className="analyze-file-name" title={pickedName}>
+            {pickedName}
+          </p>
+        )}
+        {msg && <p className="muted tiny analyze-msg">{msg}</p>}
       </div>
 
       {!job && (
-        <div className="card">
+        <div className="card analyze-card">
           <p className="muted">
-            Chưa có job. Chọn file hoặc nạp demo để bắt đầu vòng locked / unsure /
-            empty.
+            Chưa có job. Chọn file hoặc nạp demo để bắt đầu vòng Đã khóa / Chưa
+            chắc / Trống.
           </p>
         </div>
       )}
 
       {job && (
         <>
-          <div className="card">
-            <h3>Job · {job.job.source.filename}</h3>
-            <p className="muted">
-              {Math.round(job.job.source.durationMs / 1000)}s · chấp nhận{' '}
-              {job.job.progress.percentAccepted}% · vòng {job.loop.round}
-            </p>
-            <div className="bar">
-              <div
-                className="bar-fill"
-                style={{ width: `${job.job.progress.percentAccepted}%` }}
-              />
+          <div className="card analyze-card analyze-job">
+            <div className="analyze-job-head">
+              <div className="analyze-job-title">
+                <span className="analyze-job-label">Job</span>
+                <strong
+                  className="analyze-job-name"
+                  title={job.job.source.filename}
+                >
+                  {shortFilename(job.job.source.filename)}
+                </strong>
+              </div>
+              <span className="analyze-job-meta">
+                {formatDuration(job.job.source.durationMs)} · vòng{' '}
+                {job.loop.round}
+              </span>
             </div>
-            {job.stubLabel && <p className="muted tiny">{job.stubLabel}</p>}
+            <div className="analyze-progress">
+              <div className="analyze-progress-row">
+                <span>Đã chấp nhận</span>
+                <strong>{job.job.progress.percentAccepted}%</strong>
+              </div>
+              <div className="bar">
+                <div
+                  className="bar-fill"
+                  style={{ width: `${job.job.progress.percentAccepted}%` }}
+                />
+              </div>
+            </div>
+            {job.stubLabel && (
+              <p className="analyze-job-stub muted tiny">{job.stubLabel}</p>
+            )}
           </div>
 
-          <div className="card">
-            <h3>Đoạn</h3>
-            <ul className="lesson-list">
-              {job.segments.map((s) => (
-                <li key={s.id}>
-                  <button
-                    type="button"
-                    className={`lesson-row${s.id === active?.id ? ' done' : ''}`}
-                    onClick={() => setJob(selectSegment(job, s.id))}
-                  >
-                    <span className="lid">{s.id}</span>
-                    <span className="ltitle">
-                      {(s.startMs / 1000).toFixed(1)}s–
-                      {(s.endMs / 1000).toFixed(1)}s · {statusLabelVi(s.status)} ·
-                      rerun {s.autoPasses}/{MAX_RERUN}
-                    </span>
-                    <span className="lstate">
-                      {s.status === 'locked' || s.status === 'skipped'
-                        ? '✓'
-                        : s.status === 'empty'
-                          ? '○'
-                          : '?'}
-                    </span>
-                  </button>
-                </li>
-              ))}
+          <div className="card analyze-card">
+            <h3>2. Xử lý đoạn</h3>
+            <ul className="analyze-seg-list">
+              {job.segments.map((s) => {
+                const selected = s.id === active?.id;
+                return (
+                  <li key={s.id}>
+                    <button
+                      type="button"
+                      className={`analyze-seg-row${selected ? ' is-active' : ''}`}
+                      onClick={() => setJob(selectSegment(job, s.id))}
+                    >
+                      <span className="analyze-seg-id">{s.id}</span>
+                      <span className="analyze-seg-time">
+                        {(s.startMs / 1000).toFixed(1)}s –{' '}
+                        {(s.endMs / 1000).toFixed(1)}s
+                      </span>
+                      <span className={statusChipClass(s.status)}>
+                        {chipLabel(s.status)}
+                      </span>
+                      <span className="analyze-seg-rerun muted tiny">
+                        {s.autoPasses}/{MAX_RERUN}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           {active && (
-            <div className="card">
-              <h3>
-                Đoạn đang chọn · {active.id} · {statusLabelVi(active.status)}
-              </h3>
-              <div className="seq-preview">
-                {active.notes.length === 0 && (
-                  <span className="muted">Chưa có nốt (empty).</span>
-                )}
-                {active.notes.map((n, i) => (
-                  <span
-                    key={`${n.onsetMs}-${i}`}
-                    className={`chip static${n.key == null ? ' on' : ''}`}
-                  >
-                    {n.key ? keyLabelVi(n.key) : '□'}
-                  </span>
-                ))}
+            <div className="card analyze-card analyze-active">
+              <div className="analyze-active-head">
+                <h3>
+                  Đoạn đang chọn · {active.id}
+                </h3>
+                <span className={statusChipClass(active.status)}>
+                  {chipLabel(active.status)}
+                </span>
               </div>
-              <div className="btn-row" style={{ marginTop: 10 }}>
-                <button
-                  type="button"
-                  className="secondary"
-                  disabled={!canRerun(active)}
-                  onClick={doRerun}
-                >
-                  Chạy lại đoạn ({active.autoPasses}/{MAX_RERUN})
-                </button>
-                <button type="button" className="secondary" onClick={doSkip}>
-                  Bỏ đoạn
-                </button>
-                <button type="button" className="primary" onClick={doLockSeg}>
-                  Khóa đoạn
-                </button>
-              </div>
-              <div className="btn-row" style={{ marginTop: 8 }}>
-                <select
-                  value={pickKey}
-                  onChange={(e) => setPickKey(e.target.value)}
-                  className="lesson-bar"
-                >
-                  {NOTE_CHOICES.map((k) => (
-                    <option key={k} value={k}>
-                      {keyLabelVi(k)}
-                    </option>
+              <p className="analyze-active-range muted">
+                {(active.startMs / 1000).toFixed(1)}s –{' '}
+                {(active.endMs / 1000).toFixed(1)}s
+              </p>
+
+              <div className="analyze-active-notes">
+                <span className="analyze-section-label">Nốt</span>
+                <div className="seq-preview">
+                  {active.notes.length === 0 && (
+                    <span className="muted">Chưa có nốt (trống).</span>
+                  )}
+                  {active.notes.map((n, i) => (
+                    <span
+                      key={`${n.onsetMs}-${i}`}
+                      className={`chip static${n.key == null ? ' on' : ''}`}
+                    >
+                      {n.key ? keyLabelVi(n.key) : '□'}
+                    </span>
                   ))}
-                </select>
-                <button type="button" className="secondary" onClick={doEnter}>
-                  Nhập nốt vào ô trống
-                </button>
+                </div>
+              </div>
+
+              <div className="analyze-actions">
+                <span className="analyze-section-label">Thao tác đoạn</span>
+                <div className="btn-row analyze-actions-row">
+                  <button
+                    type="button"
+                    className="secondary"
+                    disabled={!canRerun(active)}
+                    onClick={doRerun}
+                  >
+                    Chạy lại ({active.autoPasses}/{MAX_RERUN})
+                  </button>
+                  <button type="button" className="secondary" onClick={doSkip}>
+                    Bỏ đoạn
+                  </button>
+                  <button type="button" className="primary" onClick={doLockSeg}>
+                    Khóa đoạn
+                  </button>
+                </div>
+              </div>
+
+              <div className="analyze-enter">
+                <span className="analyze-section-label">Nhập nốt vào ô trống</span>
+                <div className="btn-row analyze-actions-row">
+                  <select
+                    value={pickKey}
+                    onChange={(e) => setPickKey(e.target.value)}
+                    className="lesson-bar analyze-note-select"
+                    aria-label="Chọn nốt"
+                  >
+                    {NOTE_CHOICES.map((k) => (
+                      <option key={k} value={k}>
+                        {keyLabelVi(k)}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="button" className="secondary" onClick={doEnter}>
+                    Nhập nốt
+                  </button>
+                </div>
               </div>
             </div>
           )}
 
-          <button
-            type="button"
-            className="primary block"
-            disabled={!canLockSong(job)}
-            onClick={doLockSong}
-          >
-            Khóa bài → Phòng LED
-          </button>
-          {!canLockSong(job) && (
-            <p className="muted tiny center">
-              lock_song chỉ bật khi hết empty và unsure.
+          <div className="analyze-sticky-cta">
+            <button
+              type="button"
+              className="primary block"
+              disabled={!lockReady}
+              onClick={doLockSong}
+            >
+              3. Khóa bài → Phòng LED
+            </button>
+            <p className="analyze-cta-hint muted tiny center">
+              {lockReady
+                ? 'Sẵn sàng khóa bài và mở Phòng LED.'
+                : 'Chỉ bật khi hết đoạn Trống và Chưa chắc.'}
             </p>
-          )}
+          </div>
         </>
       )}
     </div>

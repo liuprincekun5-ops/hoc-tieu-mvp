@@ -631,7 +631,7 @@ export function statusLabelVi(status: string): string {
     case 'user_edited':
       return 'Bạn đã sửa';
     case 'skipped':
-      return 'Bỏ (nghỉ)';
+      return 'Đã bỏ';
     default:
       return status;
   }

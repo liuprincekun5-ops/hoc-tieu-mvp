@@ -67,3 +67,12 @@
 - Home on desktop: welcome card + CTA “Tiếp tục học” (lesson list stays in left rail). Mobile home still shows full list via `LessonRail` inside `HomePage` (`.hide-on-desktop` / `.hide-on-mobile`).
 - Bottom phone nav restyled as sticky top tabs inside the right column on desktop; mobile bottom nav unchanged.
 - Shared component: `src/components/LessonRail.tsx` (+ `LessonRail.css`).
+
+## Analyze UX polish (2026-09-17)
+
+- Custom file picker (hidden native input) + full filename with `title` / `word-break: break-all`.
+- Segment rows use Vietnamese status chips: Đã khóa / Chưa chắc / Trống / Đã bỏ (color-coded), not lesson ✓/?/○.
+- Active segment: time range, notes, actions (rerun / skip / lock), enter-note grouped with section labels.
+- Job card: shortened display name + duration/progress; stub disclaimer kept compact.
+- Sticky CTA **Khóa bài → Phòng LED** with always-visible disable reason; step strip `1 Chọn file · 2 Xử lý đoạn · 3 Khóa bài`.
+- Extra `.page` / `.analyze-page` horizontal padding (esp. desktop ≥900px). Stub logic in `analyze.ts` unchanged (label text only for skipped).
