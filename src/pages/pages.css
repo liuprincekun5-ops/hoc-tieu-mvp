@@ -542,3 +542,41 @@ button.linkish {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Mobile home rail wrapper */
+.home-mobile-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Desktop welcome overview */
+.welcome-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.welcome-card .welcome-next {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+.welcome-card .welcome-next strong {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.welcome-tip {
+  margin: 12px 0 0;
+}

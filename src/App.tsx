@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { LessonRail } from './components/LessonRail';
 import { Nav } from './components/Nav';
 import { loadCatalog, loadMap } from './lib/data';
 import { loadProgress } from './lib/storage';
@@ -61,7 +62,7 @@ export default function App() {
 
   if (bootErr) {
     return (
-      <div className="phone">
+      <div className="phone app-shell">
         <p className="error pad">{bootErr}</p>
       </div>
     );
@@ -69,61 +70,79 @@ export default function App() {
 
   if (!catalog || !map) {
     return (
-      <div className="phone">
+      <div className="phone app-shell">
         <p className="muted pad">Đang tải gói giáo trình…</p>
       </div>
     );
   }
 
   return (
-    <div className="phone">
-      <main className="main">
-        {screen === 'home' && (
-          <HomePage
+    <div className="phone app-shell">
+      <aside className="desktop-rail" aria-label="Danh sách bài học">
+        <div className="desktop-rail-head">
+          <strong className="desktop-rail-title">{catalog.title}</strong>
+          <span className="badge">Hơi G · 8 lỗ</span>
+        </div>
+        <div className="desktop-rail-scroll">
+          <LessonRail
             catalog={catalog}
             progress={progress}
             onOpenLesson={openLesson}
-            onGoLed={() => setScreen('led')}
-            onGoAnalyze={() => setScreen('analyze')}
+            activeId={lessonId}
           />
-        )}
-        {screen === 'learn' && (
-          <LearnPage
-            catalog={catalog}
-            map={map}
-            progress={progress}
-            selectedId={lessonId}
-            onSelect={setLessonId}
-            onProgress={setProgress}
-            onPlayInLed={(p) => playInLed(p)}
-            onGoAfter={goAfter}
-          />
-        )}
-        {screen === 'led' && (
-          <LedPage
-            catalog={catalog}
-            map={map}
-            progress={progress}
-            inject={ledInject}
-            onClearInject={() => setLedInject(null)}
-            onFinished={onLedFinished}
-            onProgress={setProgress}
-            onGoAfter={goAfter}
-          />
-        )}
-        {screen === 'analyze' && (
-          <AnalyzePage map={map} onOpenInLed={(p) => playInLed(p)} />
-        )}
-        {screen === 'after' && (
-          <AfterPage
-            catalog={catalog}
-            lessonId={lessonId}
-            onSelectLesson={setLessonId}
-            onReplay={(piece, atBeat) => playInLed(piece, atBeat)}
-          />
-        )}
-      </main>
-      <Nav current={screen} onChange={setScreen} />
+        </div>
+      </aside>
+
+      <div className="content-pane">
+        <Nav current={screen} onChange={setScreen} />
+        <main className="main">
+          {screen === 'home' && (
+            <HomePage
+              catalog={catalog}
+              progress={progress}
+              lessonId={lessonId}
+              onOpenLesson={openLesson}
+              onGoLed={() => setScreen('led')}
+              onGoAnalyze={() => setScreen('analyze')}
+            />
+          )}
+          {screen === 'learn' && (
+            <LearnPage
+              catalog={catalog}
+              map={map}
+              progress={progress}
+              selectedId={lessonId}
+              onSelect={setLessonId}
+              onProgress={setProgress}
+              onPlayInLed={(p) => playInLed(p)}
+              onGoAfter={goAfter}
+            />
+          )}
+          {screen === 'led' && (
+            <LedPage
+              catalog={catalog}
+              map={map}
+              progress={progress}
+              inject={ledInject}
+              onClearInject={() => setLedInject(null)}
+              onFinished={onLedFinished}
+              onProgress={setProgress}
+              onGoAfter={goAfter}
+            />
+          )}
+          {screen === 'analyze' && (
+            <AnalyzePage map={map} onOpenInLed={(p) => playInLed(p)} />
+          )}
+          {screen === 'after' && (
+            <AfterPage
+              catalog={catalog}
+              lessonId={lessonId}
+              onSelectLesson={setLessonId}
+              onReplay={(piece, atBeat) => playInLed(piece, atBeat)}
+            />
+          )}
+        </main>
+      </div>
     </div>
   );
 }

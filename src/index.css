@@ -32,11 +32,12 @@
   --ease: ease-out;
   --touch-min: 44px;
   --app-max: 720px;
+  --rail-width: 320px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 900px) {
   :root {
-    --app-max: 880px;
+    --app-max: min(1180px, calc(100% - 32px));
   }
 }
 

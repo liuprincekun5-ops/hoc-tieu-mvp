@@ -57,3 +57,13 @@
 - Motion: ~200ms ease-out press `scale(0.98)`; `prefers-reduced-motion` honored globally.
 - Focus rings on interactive controls; contrast-friendly muted text `#57534E`.
 - Kept all features (Nhà/Học/Phòng LED/Sau bài/Phân tích, mic, analyze). `vite` base `/hoc-tieu-mvp/` unchanged.
+
+
+## Desktop 2-column layout (≥900px)
+
+- Shell widens: `--app-max: min(1180px, calc(100% - 32px))`.
+- Left rail (~300–340px): `LessonRail` — tiến độ x/16 + tiered lessons (lock/open/done); click → Học for that id.
+- Right pane: top tab bar (Nhà / Học / LED / Phân tích / Sau bài) + screen content.
+- Home on desktop: welcome card + CTA “Tiếp tục học” (lesson list stays in left rail). Mobile home still shows full list via `LessonRail` inside `HomePage` (`.hide-on-desktop` / `.hide-on-mobile`).
+- Bottom phone nav restyled as sticky top tabs inside the right column on desktop; mobile bottom nav unchanged.
+- Shared component: `src/components/LessonRail.tsx` (+ `LessonRail.css`).

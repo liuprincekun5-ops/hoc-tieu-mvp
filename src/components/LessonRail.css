@@ -1,0 +1,26 @@
+.lesson-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.lesson-rail .progress-card {
+  flex-shrink: 0;
+}
+
+.lesson-rail .tier {
+  flex-shrink: 0;
+}
+
+.lesson-row.active:not(.locked) {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(180, 83, 9, 0.18), var(--shadow-card);
+  background: #fff7ed;
+}
+
+.lesson-row.active.done {
+  background: #ecfdf5;
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.15);
+}
