@@ -1,5 +1,6 @@
 .phone {
-  width: min(430px, 100%);
+  width: min(var(--app-max), 100%);
+  max-width: 100%;
   min-height: 100dvh;
   margin: 0 auto;
   display: flex;

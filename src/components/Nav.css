@@ -10,7 +10,7 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(430px, 100%);
+  width: min(var(--app-max), 100%);
   z-index: 20;
 }
 
