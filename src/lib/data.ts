@@ -37,6 +37,14 @@ export function loadDemoAnalyze(): Promise<unknown> {
   return fetchJson('jobs/job_demo_01.analyze.json')
 }
 
+export function loadUserMp3Piece(): Promise<TieuPiece> {
+  return fetchJson('jobs/user_mp3_sample_01.exported.json')
+}
+
+export function loadUserMp3Analyze(): Promise<unknown> {
+  return fetchJson('jobs/job_user_mp3_01.analyze.json')
+}
+
 export function isLessonUnlocked(
   lessonIds: string[],
   lessonId: string,

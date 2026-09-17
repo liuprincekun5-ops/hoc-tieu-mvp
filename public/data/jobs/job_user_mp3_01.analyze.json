@@ -1,0 +1,993 @@
+{
+  "schema": "tieu.analyze.v1",
+  "stubLabel": "AMT thô (librosa.pyin) — mẫu từ file người dùng; không phải nhận dạng studio.",
+  "job": {
+    "id": "job_user_mp3_01",
+    "source": {
+      "filename": "ff9ed2789f62c16a6906324e8dd13c1323bf46650df83bc9abee028c6ee201fc.mp3",
+      "durationMs": 280984,
+      "audioId": "user_upload_mp3_01"
+    },
+    "progress": {
+      "lockedMs": 90000,
+      "unsureMs": 0,
+      "emptyMs": 0,
+      "percentAccepted": 100
+    }
+  },
+  "loop": {
+    "round": 1,
+    "activeSegmentId": "seg_a"
+  },
+  "segments": [
+    {
+      "id": "seg_a",
+      "startMs": 0,
+      "endMs": 30000,
+      "status": "locked",
+      "confidence": 0.75,
+      "autoPasses": 1,
+      "chosenBy": "user",
+      "notes": [
+        {
+          "onsetMs": 0,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 8157,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 8657,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 9171,
+          "durationMs": 400,
+          "key": "Mi",
+          "jianpu": "6",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 9428,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 10028,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 10442,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 10885,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 11171,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 12214,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 12585,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 14328,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 15528,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 16442,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 17228,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 17971,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 18185,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 21314,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 21828,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 22828,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 24728,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 25685,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 26000,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 28442,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 28771,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 29557,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        }
+      ]
+    },
+    {
+      "id": "seg_b",
+      "startMs": 30000,
+      "endMs": 60000,
+      "status": "locked",
+      "confidence": 0.75,
+      "autoPasses": 1,
+      "chosenBy": "user",
+      "notes": [
+        {
+          "onsetMs": 30328,
+          "durationMs": 400,
+          "key": "Mi",
+          "jianpu": "6",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 30600,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 31400,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 36528,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 36728,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 40128,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 40328,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 41542,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 41742,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 42285,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 43814,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 44514,
+          "durationMs": 400,
+          "key": "La",
+          "jianpu": "2",
+          "holes": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 45028,
+          "durationMs": 400,
+          "key": "Fi",
+          "jianpu": "7",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 45514,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 46671,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 47199,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        }
+      ]
+    },
+    {
+      "id": "seg_c",
+      "startMs": 60000,
+      "endMs": 90000,
+      "status": "locked",
+      "confidence": 0.75,
+      "autoPasses": 1,
+      "chosenBy": "user",
+      "notes": [
+        {
+          "onsetMs": 60585,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 60900,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 79342,
+          "durationMs": 400,
+          "key": "Mi",
+          "jianpu": "6",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 80528,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 81114,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 81428,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 86728,
+          "durationMs": 400,
+          "key": "Mi",
+          "jianpu": "6",
+          "holes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 87028,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        },
+        {
+          "onsetMs": 88171,
+          "durationMs": 400,
+          "key": "Si",
+          "jianpu": "3",
+          "holes": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": false
+        },
+        {
+          "onsetMs": 88485,
+          "durationMs": 400,
+          "key": null,
+          "jianpu": "0",
+          "holes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "confidence": 0.72,
+          "breath": true
+        }
+      ]
+    }
+  ]
+}

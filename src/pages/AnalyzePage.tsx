@@ -13,7 +13,7 @@ import {
   statusLabelVi,
   stubAnalyzeFromDuration,
 } from '../lib/analyze';
-import { keyLabelVi, loadDemoAnalyze } from '../lib/data';
+import { keyLabelVi, loadDemoAnalyze, loadUserMp3Analyze, loadUserMp3Piece } from '../lib/data';
 import { probeDurationMs, saveAudioBlob } from '../lib/idbAudio';
 import type { TieuAnalyze, TieuMap, TieuPiece } from '../types/tieu';
 import './pages.css';
@@ -107,6 +107,35 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
       setMsg('Đã nạp job demo gói giấy (stub).');
     } catch (e) {
       setMsg(e instanceof Error ? e.message : 'Không tải demo.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const startFromUserMp3 = async () => {
+    setBusy(true);
+    setMsg(null);
+    try {
+      const raw = await loadUserMp3Analyze();
+      setJob(adoptDemoAnalyze(raw));
+      setPickedName('MP3 của bạn (mẫu đã phân tích ~90s đầu)');
+      setMsg('Đã nạp phân tích mẫu từ file MP3 — có thể Khóa bài → LED hoặc mở phổ sẵn.');
+    } catch (e) {
+      setMsg(e instanceof Error ? e.message : 'Không tải mẫu MP3.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const openUserMp3InLed = async () => {
+    setBusy(true);
+    setMsg(null);
+    try {
+      const piece = await loadUserMp3Piece();
+      setMsg('Đang mở bài MP3 mẫu trong Phòng LED…');
+      onOpenInLed(piece);
+    } catch (e) {
+      setMsg(e instanceof Error ? e.message : 'Không mở được piece.');
     } finally {
       setBusy(false);
     }
@@ -227,6 +256,22 @@ export function AnalyzePage({ map, onOpenInLed }: Props) {
             onClick={() => void startFromDemo()}
           >
             Nạp demo gói giấy
+          </button>
+          <button
+            type="button"
+            className="primary"
+            disabled={busy}
+            onClick={() => void startFromUserMp3()}
+          >
+            Nạp phân tích từ MP3 của bạn
+          </button>
+          <button
+            type="button"
+            className="secondary"
+            disabled={busy}
+            onClick={() => void openUserMp3InLed()}
+          >
+            Mở phổ MP3 trong LED
           </button>
         </div>
         {pickedName && (

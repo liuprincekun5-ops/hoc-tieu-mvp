@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { FluteLed } from '../components/FluteLed';
 import { PitchCheck } from '../components/PitchCheck';
 import { usePiecePlayer } from '../hooks/usePiecePlayer';
-import { keyLabelVi, loadDemoPiece, loadLesson, nextLessonId } from '../lib/data';
+import { keyLabelVi, loadDemoPiece, loadLesson, loadUserMp3Piece, nextLessonId } from '../lib/data';
 import { markLessonComplete } from '../lib/storage';
 import type {
   LedInject,
@@ -24,7 +24,7 @@ interface Props {
   onGoAfter: (lessonId: string) => void;
 }
 
-type SourceKind = 'demo' | 'lesson' | 'injected';
+type SourceKind = 'demo' | 'user_mp3' | 'lesson' | 'injected';
 
 export function LedPage({
   catalog,
@@ -69,6 +69,8 @@ export function LedPage({
     const loader =
       source === 'demo'
         ? loadDemoPiece()
+        : source === 'user_mp3'
+          ? loadUserMp3Piece()
         : loadLesson(
             catalog.lessons.find((l) => l.id === lessonId)?.file ??
               `lessons/${lessonId}.json`
@@ -153,6 +155,7 @@ export function LedPage({
           >
             <option value="lesson">Bài học L01–L16</option>
             <option value="demo">Demo job_demo_01</option>
+            <option value="user_mp3">Bài từ MP3 của bạn (mẫu)</option>
             {injected && <option value="injected">Từ Học / Phân tích / Sau bài</option>}
           </select>
         </label>
