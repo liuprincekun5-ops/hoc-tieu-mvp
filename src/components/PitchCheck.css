@@ -1,0 +1,44 @@
+.pitch-check {
+  background: var(--panel, #16181d);
+  border: 1px solid var(--line, #2a2e36);
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+.pitch-check.compact { padding: 10px 12px; }
+.pitch-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.pitch-head strong { font-size: 13px; color: var(--teal, #3ecfb5); }
+.pitch-badge {
+  font-size: 10px;
+  color: var(--muted, #9aa0ab);
+  border: 1px dashed #3a4048;
+  border-radius: 999px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.pitch-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.pitch-verdict {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 12px;
+  background: #1c1f25;
+  border: 1px solid var(--line, #2a2e36);
+}
+.pitch-verdict.v-match { color: #3ecfb5; border-color: #2a5a4c; background: #12241f; }
+.pitch-verdict.v-near { color: var(--amber, #e8b15a); border-color: #5a4620; background: #241c0e; }
+.pitch-verdict.v-miss { color: #f08080; border-color: #5a3030; background: #241414; }
+.pitch-verdict.v-silent,
+.pitch-verdict.v-idle { color: var(--muted, #9aa0ab); }

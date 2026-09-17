@@ -1,4 +1,4 @@
-/** Schema types from tieu-pack */
+/** Schema types aligned with tieu-pack JSON */
 
 export type HoleState = 0 | 1;
 
@@ -111,10 +111,108 @@ export interface UserAfterNote {
 }
 
 export interface ProgressState {
-  /** Highest lesson index completed (0-based). -1 = none. Unlocks next. */
   completedIds: string[];
-  /** Last opened lesson */
   lastLessonId: string | null;
 }
 
-export type ScreenId = 'home' | 'learn' | 'led' | 'after';
+export type ScreenId = 'home' | 'learn' | 'led' | 'after' | 'analyze';
+
+/** Replay events in [atBeat - before, atBeat + after] (~2–4 beats). */
+export interface ReplayWindow {
+  atBeat: number;
+  before?: number;
+  after?: number;
+}
+
+export interface LedInject {
+  piece: TieuPiece;
+  replay?: ReplayWindow | null;
+}
+
+/* —— tieu.analyze.v1 —— */
+
+export type SegmentStatus =
+  | 'locked'
+  | 'unsure'
+  | 'empty'
+  | 'user_edited'
+  | 'skipped';
+
+export interface AnalyzeNote {
+  onsetMs: number;
+  durationMs: number;
+  key: string | null;
+  jianpu?: string | null;
+  holes?: HoleState[] | null;
+  confidence?: number;
+  flag?: string;
+  breath?: boolean;
+}
+
+export interface AnalyzeSegment {
+  id: string;
+  startMs: number;
+  endMs: number;
+  status: SegmentStatus;
+  confidence: number;
+  autoPasses: number;
+  chosenBy: 'user' | 'model' | null;
+  notes: AnalyzeNote[];
+  gapReason?: string;
+  lockedAt?: string;
+}
+
+export interface AnalyzeLoopHistory {
+  round: number;
+  action: string;
+  actor: string;
+  segmentId?: string;
+  result?: string;
+  passesUsed?: number;
+}
+
+export interface AnalyzeJobMeta {
+  id: string;
+  createdAt: string;
+  status: string;
+  instrument: { id: string; grip: string };
+  source: {
+    filename: string;
+    durationMs: number;
+    license: string;
+  };
+  progress: {
+    lockedMs: number;
+    unsureMs: number;
+    emptyMs: number;
+    percentAccepted: number;
+  };
+}
+
+export interface AnalyzeSettings {
+  notation: string;
+  tonicSystem: string;
+  maxAutoPassPerSegment: number;
+  confidenceLock: number;
+  confidenceUnsure: number;
+}
+
+export interface AnalyzeLoop {
+  round: number;
+  activeSegmentId: string | null;
+  waitingAction: string;
+  allowedActions: string[];
+  history: AnalyzeLoopHistory[];
+}
+
+export interface TieuAnalyze {
+  schema: 'tieu.analyze.v1';
+  job: AnalyzeJobMeta;
+  settings: AnalyzeSettings;
+  segments: AnalyzeSegment[];
+  loop: AnalyzeLoop;
+  localAudioId?: string;
+  stubLabel?: string;
+}
+
+export type PitchMatch = 'match' | 'near' | 'miss' | 'silent' | 'idle';

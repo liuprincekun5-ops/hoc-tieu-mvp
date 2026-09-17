@@ -7,9 +7,10 @@ interface Props {
   progress: ProgressState;
   onOpenLesson: (lessonId: string) => void;
   onGoLed: () => void;
+  onGoAnalyze?: () => void;
 }
 
-export function HomePage({ catalog, progress, onOpenLesson, onGoLed }: Props) {
+export function HomePage({ catalog, progress, onOpenLesson, onGoLed, onGoAnalyze }: Props) {
   const ids = catalog.lessons.map((l) => l.id);
   const done = progress.completedIds.length;
   const total = catalog.lessons.length;
@@ -33,7 +34,7 @@ export function HomePage({ catalog, progress, onOpenLesson, onGoLed }: Props) {
           <div className="bar-fill" style={{ width: `${pct}%` }} />
         </div>
         <p className="muted">
-          Mở khóa tuần tự. Luyện lại bài đã mở bất cứ lúc nào.
+          {done === 0 ? 'Bắt đầu từ L01 — hoàn thành để mở bài tiếp.' : 'Mở khóa tuần tự. Luyện lại bài đã mở bất cứ lúc nào.'}
         </p>
       </div>
 
@@ -69,12 +70,19 @@ export function HomePage({ catalog, progress, onOpenLesson, onGoLed }: Props) {
         </section>
       ))}
 
-      <button type="button" className="primary block" onClick={onGoLed}>
-        Mở Phòng LED (xem mẫu)
-      </button>
+      <div className="btn-row">
+        <button type="button" className="primary" onClick={onGoLed}>
+          Phòng LED
+        </button>
+        {onGoAnalyze && (
+          <button type="button" className="secondary" onClick={onGoAnalyze}>
+            Phân tích file
+          </button>
+        )}
+      </div>
 
       <p className="muted center tiny">
-        Một nhạc cụ: tiêu 8 lỗ hơi G. Không mic chấm nốt · không nửa cung trong 16 bài đầu.
+        Chỉ tiêu 8 lỗ hơi G. Mic chỉ là trợ giúp “chấm gần đúng” (tùy chọn). Không nửa cung trong 16 bài đầu.
       </p>
     </div>
   );

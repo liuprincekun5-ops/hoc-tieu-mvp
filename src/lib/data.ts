@@ -3,7 +3,7 @@ import catalogJson from '../data/catalog.json'
 import mapJson from '../data/xiao-g-8.json'
 import type { AfterTemplate, TieuCatalog, TieuMap, TieuPiece } from '../types/tieu'
 
-/** Vite BASE_URL is a path like `/hoc-tieu-mvp/` — not a full URL */
+/** Vite BASE_URL is a path like `/hoc-tieu-mvp/` — never use `new URL(..., BASE_URL)`. */
 const BASE = `${import.meta.env.BASE_URL}data`.replace(/([^:]\/)\/+/g, '$1')
 
 async function fetchJson<T>(path: string): Promise<T> {
@@ -31,6 +31,10 @@ export function loadLesson(file: string): Promise<TieuPiece> {
 
 export function loadDemoPiece(): Promise<TieuPiece> {
   return fetchJson('jobs/job_demo_01.exported.json')
+}
+
+export function loadDemoAnalyze(): Promise<unknown> {
+  return fetchJson('jobs/job_demo_01.analyze.json')
 }
 
 export function isLessonUnlocked(

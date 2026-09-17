@@ -3,10 +3,12 @@ import { Nav } from './components/Nav';
 import { loadCatalog, loadMap } from './lib/data';
 import { loadProgress } from './lib/storage';
 import { AfterPage } from './pages/AfterPage';
+import { AnalyzePage } from './pages/AnalyzePage';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { LedPage } from './pages/LedPage';
 import type {
+  LedInject,
   ProgressState,
   ScreenId,
   TieuCatalog,
@@ -21,7 +23,7 @@ export default function App() {
   const [map, setMap] = useState<TieuMap | null>(null);
   const [progress, setProgress] = useState<ProgressState>(loadProgress);
   const [lessonId, setLessonId] = useState<string | null>(null);
-  const [ledPiece, setLedPiece] = useState<TieuPiece | null>(null);
+  const [ledInject, setLedInject] = useState<LedInject | null>(null);
   const [bootErr, setBootErr] = useState<string | null>(null);
 
   useEffect(() => {
@@ -39,8 +41,11 @@ export default function App() {
     setScreen('learn');
   }, []);
 
-  const playInLed = useCallback((piece: TieuPiece) => {
-    setLedPiece(piece);
+  const playInLed = useCallback((piece: TieuPiece, atBeat?: number) => {
+    setLedInject({
+      piece,
+      replay: atBeat != null ? { atBeat, before: 1, after: 2 } : null,
+    });
     setLessonId(piece.pieceId);
     setScreen('led');
   }, []);
@@ -79,6 +84,7 @@ export default function App() {
             progress={progress}
             onOpenLesson={openLesson}
             onGoLed={() => setScreen('led')}
+            onGoAnalyze={() => setScreen('analyze')}
           />
         )}
         {screen === 'learn' && (
@@ -89,7 +95,7 @@ export default function App() {
             selectedId={lessonId}
             onSelect={setLessonId}
             onProgress={setProgress}
-            onPlayInLed={playInLed}
+            onPlayInLed={(p) => playInLed(p)}
             onGoAfter={goAfter}
           />
         )}
@@ -97,17 +103,23 @@ export default function App() {
           <LedPage
             catalog={catalog}
             map={map}
-            injected={ledPiece}
-            onClearInjected={() => setLedPiece(null)}
+            progress={progress}
+            inject={ledInject}
+            onClearInject={() => setLedInject(null)}
             onFinished={onLedFinished}
+            onProgress={setProgress}
+            onGoAfter={goAfter}
           />
+        )}
+        {screen === 'analyze' && (
+          <AnalyzePage map={map} onOpenInLed={(p) => playInLed(p)} />
         )}
         {screen === 'after' && (
           <AfterPage
             catalog={catalog}
             lessonId={lessonId}
             onSelectLesson={setLessonId}
-            onReplay={(piece) => playInLed(piece)}
+            onReplay={(piece, atBeat) => playInLed(piece, atBeat)}
           />
         )}
       </main>

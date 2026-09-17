@@ -1,0 +1,71 @@
+{
+  "schema": "tieu.analyze.v1",
+  "job": {
+    "id": "job_demo_01",
+    "createdAt": "2026-09-16T15:13:00+07:00",
+    "status": "waiting_user",
+    "instrument": { "id": "xiao_g_8", "grip": "left_on_top" },
+    "source": { "filename": "doc-tau-mau.wav", "durationMs": 32000, "license": "user_owned" },
+    "progress": { "lockedMs": 12000, "unsureMs": 8000, "emptyMs": 12000, "percentAccepted": 38 }
+  },
+  "settings": {
+    "notation": "jianpu",
+    "tonicSystem": "tube_as_5",
+    "maxAutoPassPerSegment": 3,
+    "confidenceLock": 0.82,
+    "confidenceUnsure": 0.55
+  },
+  "segments": [
+    {
+      "id": "seg_a",
+      "startMs": 0,
+      "endMs": 12000,
+      "status": "locked",
+      "confidence": 0.91,
+      "autoPasses": 1,
+      "chosenBy": "user",
+      "notes": [
+        { "onsetMs": 400, "durationMs": 700, "key": "Re", "jianpu": "5", "holes": [1,1,1,1,1,1,1,1], "breath": false },
+        { "onsetMs": 1200, "durationMs": 700, "key": "Mi", "jianpu": "6", "holes": [1,1,1,1,1,1,1,0], "breath": false },
+        { "onsetMs": 2000, "durationMs": 900, "key": "Sol", "jianpu": "1", "holes": [1,1,1,1,0,0,0,0], "breath": false },
+        { "onsetMs": 3000, "durationMs": 600, "key": "rest", "jianpu": "0", "holes": [0,0,0,0,0,0,0,0], "breath": true }
+      ]
+    },
+    {
+      "id": "seg_b",
+      "startMs": 12000,
+      "endMs": 20000,
+      "status": "unsure",
+      "confidence": 0.64,
+      "autoPasses": 2,
+      "chosenBy": "model",
+      "notes": [
+        { "onsetMs": 12200, "durationMs": 500, "key": "Sol", "jianpu": "1", "confidence": 0.78, "holes": [1,1,1,1,0,0,0,0] },
+        { "onsetMs": 12800, "durationMs": 400, "key": null, "jianpu": null, "confidence": 0.28, "flag": "blank", "holes": null },
+        { "onsetMs": 13400, "durationMs": 600, "key": "La", "jianpu": "2", "confidence": 0.61, "holes": [1,1,1,0,0,0,0,0] }
+      ]
+    },
+    {
+      "id": "seg_c",
+      "startMs": 20000,
+      "endMs": 32000,
+      "status": "empty",
+      "confidence": 0.29,
+      "autoPasses": 1,
+      "chosenBy": null,
+      "notes": [],
+      "gapReason": "mix_or_ornament"
+    }
+  ],
+  "loop": {
+    "round": 3,
+    "activeSegmentId": "seg_c",
+    "waitingAction": "user_command",
+    "allowedActions": ["listen", "rerun_segment", "enter_notes", "skip_segment", "lock_segment"],
+    "history": [
+      { "round": 1, "action": "auto_first_pass", "actor": "model", "result": "filled_a_and_b" },
+      { "round": 2, "action": "lock_segment", "actor": "user", "segmentId": "seg_a", "result": "ok" },
+      { "round": 3, "action": "rerun_segment", "actor": "user", "segmentId": "seg_b", "passesUsed": 2, "result": "still_unsure" }
+    ]
+  }
+}

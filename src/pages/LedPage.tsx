@@ -1,17 +1,27 @@
 import { useEffect, useMemo, useState } from 'react';
 import { FluteLed } from '../components/FluteLed';
+import { PitchCheck } from '../components/PitchCheck';
 import { usePiecePlayer } from '../hooks/usePiecePlayer';
-import { keyLabelVi, loadDemoPiece, loadLesson } from '../lib/data';
-import type { TieuCatalog, TieuMap, TieuPiece } from '../types/tieu';
+import { keyLabelVi, loadDemoPiece, loadLesson, nextLessonId } from '../lib/data';
+import { markLessonComplete } from '../lib/storage';
+import type {
+  LedInject,
+  ProgressState,
+  TieuCatalog,
+  TieuMap,
+  TieuPiece,
+} from '../types/tieu';
 import './pages.css';
 
 interface Props {
   catalog: TieuCatalog;
   map: TieuMap;
-  /** Piece handed from Học / Sau bài */
-  injected: TieuPiece | null;
-  onClearInjected: () => void;
+  progress: ProgressState;
+  inject: LedInject | null;
+  onClearInject: () => void;
   onFinished: (piece: TieuPiece) => void;
+  onProgress: (p: ProgressState) => void;
+  onGoAfter: (lessonId: string) => void;
 }
 
 type SourceKind = 'demo' | 'lesson' | 'injected';
@@ -19,11 +29,17 @@ type SourceKind = 'demo' | 'lesson' | 'injected';
 export function LedPage({
   catalog,
   map,
-  injected,
-  onClearInjected,
+  progress,
+  inject,
+  onClearInject,
   onFinished,
+  onProgress,
+  onGoAfter,
 }: Props) {
-  const [source, setSource] = useState<SourceKind>(injected ? 'injected' : 'lesson');
+  const injected = inject?.piece ?? null;
+  const [source, setSource] = useState<SourceKind>(
+    injected ? 'injected' : 'lesson'
+  );
   const [lessonId, setLessonId] = useState(
     injected?.pieceId && catalog.lessons.some((l) => l.id === injected.pieceId)
       ? injected.pieceId
@@ -31,6 +47,7 @@ export function LedPage({
   );
   const [piece, setPiece] = useState<TieuPiece | null>(injected);
   const [err, setErr] = useState<string | null>(null);
+  const [justCompleted, setJustCompleted] = useState(false);
 
   useEffect(() => {
     if (injected) {
@@ -77,6 +94,17 @@ export function LedPage({
 
   const player = usePiecePlayer(piece, map);
 
+  // Auto-play replay window when inject carries atBeat
+  useEffect(() => {
+    if (!inject?.replay || !piece) return;
+    if (inject.piece.pieceId !== piece.pieceId) return;
+    const t = window.setTimeout(() => {
+      player.playWindow(inject.replay!);
+    }, 80);
+    return () => window.clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inject?.piece.pieceId, inject?.replay?.atBeat, piece?.pieceId]);
+
   useEffect(() => {
     if (player.finished && piece) onFinished(piece);
   }, [player.finished, piece, onFinished]);
@@ -89,6 +117,21 @@ export function LedPage({
     const pitch = e.pitch ? ` · ${e.pitch}` : '';
     return `${keyLabelVi(player.currentKey)}${j}${pitch} · hơi ${e.embouchure ?? '—'}`;
   }, [piece, player.currentKey, map]);
+
+  const ids = catalog.lessons.map((l) => l.id);
+  const isLessonPiece = !!piece && ids.includes(piece.pieceId);
+  const alreadyDone =
+    !!piece && progress.completedIds.includes(piece.pieceId);
+  const unlockedNext = piece
+    ? nextLessonId(ids, piece.pieceId)
+    : null;
+
+  const markComplete = () => {
+    if (!piece || !isLessonPiece) return;
+    onProgress(markLessonComplete(piece.pieceId));
+    setJustCompleted(true);
+    onFinished(piece);
+  };
 
   return (
     <div className="page led-page">
@@ -105,12 +148,12 @@ export function LedPage({
             onChange={(e) => {
               const v = e.target.value as SourceKind;
               setSource(v);
-              if (v !== 'injected') onClearInjected();
+              if (v !== 'injected') onClearInject();
             }}
           >
             <option value="lesson">Bài học L01–L16</option>
             <option value="demo">Demo job_demo_01</option>
-            {injected && <option value="injected">Từ màn Học</option>}
+            {injected && <option value="injected">Từ Học / Phân tích / Sau bài</option>}
           </select>
         </label>
         {source === 'lesson' && (
@@ -131,6 +174,10 @@ export function LedPage({
       </div>
 
       {err && <p className="error">{err}</p>}
+
+      {player.windowLabel && (
+        <p className="toast">Đang phát {player.windowLabel}</p>
+      )}
 
       <div className="note-now">
         <div>
@@ -169,19 +216,10 @@ export function LedPage({
       />
 
       <p className="flute-hint">
-        Vàng = đậy kín bằng thịt ngón. Xanh = nhấc ngón. Trắng trên đỉnh = lỗ
-        thổi.
+        Vàng = đậy kín. Xanh = nhấc. Chỉ tiêu 8 lỗ hơi G.
       </p>
-      <div className="legend">
-        <span>
-          <i className="dot c" />
-          Bịt
-        </span>
-        <span>
-          <i className="dot o" />
-          Mở
-        </span>
-      </div>
+
+      <PitchCheck map={map} targetKey={player.currentKey} compact />
 
       <div className="controls">
         <button
@@ -192,36 +230,63 @@ export function LedPage({
         >
           {player.playing ? 'Dừng' : 'Phát'}
         </button>
-        <button
-          type="button"
-          className="icon"
-          onClick={() => player.changeBpm(-4)}
-        >
+        <button type="button" className="icon" onClick={() => player.changeBpm(-4)}>
           −
         </button>
-        <button
-          type="button"
-          className="icon"
-          onClick={() => player.changeBpm(4)}
-        >
+        <button type="button" className="icon" onClick={() => player.changeBpm(4)}>
           +
         </button>
-        <button
-          type="button"
-          className="primary"
-          disabled={!piece}
-          onClick={() => {
-            player.stop();
-            if (piece) onFinished(piece);
-          }}
-        >
-          Tôi đã thổi
-        </button>
+        {isLessonPiece && (
+          <button
+            type="button"
+            className="primary"
+            disabled={!piece}
+            onClick={markComplete}
+          >
+            {alreadyDone || justCompleted
+              ? 'Đã đánh dấu hoàn thành'
+              : 'Đánh dấu hoàn thành bài'}
+          </button>
+        )}
       </div>
       <div className="toast">
         Tốc độ: {player.bpm} BPM
-        {player.finished ? ' · Hết mẫu — xem Sau bài' : ''}
+        {player.finished ? ' · Hết mẫu' : ''}
+        {justCompleted && unlockedNext
+          ? ` · Đã mở ${unlockedNext}`
+          : justCompleted
+            ? ' · Đã lưu tiến độ'
+            : ''}
       </div>
+
+      {(player.finished || justCompleted) && piece && isLessonPiece && (
+        <div className="card">
+          <h3>Tiếp theo</h3>
+          <div className="btn-row">
+            <button
+              type="button"
+              className="secondary"
+              onClick={() => onGoAfter(piece.pieceId)}
+            >
+              Ghi chú Sau bài
+            </button>
+            {unlockedNext && (alreadyDone || justCompleted) && (
+              <button
+                type="button"
+                className="primary"
+                onClick={() => {
+                  setLessonId(unlockedNext);
+                  setSource('lesson');
+                  onClearInject();
+                  setJustCompleted(false);
+                }}
+              >
+                Mở bài tiếp {unlockedNext}
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {piece?.after && player.finished && (
         <div className="after show">
@@ -233,18 +298,17 @@ export function LedPage({
                 {it.title} · beat {it.atBeat}
               </h3>
               <p>{it.text}</p>
+              <button
+                type="button"
+                className="linkish"
+                onClick={() => player.playWindow({ atBeat: it.atBeat })}
+              >
+                Phát lại quanh beat {it.atBeat}
+              </button>
             </div>
           ))}
         </div>
       )}
-
-      <div className="card stub muted">
-        <strong>Phân tích file (chưa làm)</strong>
-        <p>
-          Upload / AMT bị tắt trong MVP này theo ranh giới bản đầu. Chỉ phát
-          piece đã khoá sẵn.
-        </p>
-      </div>
     </div>
   );
 }

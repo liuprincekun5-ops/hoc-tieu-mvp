@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FluteLed } from '../components/FluteLed';
+import { PitchCheck } from '../components/PitchCheck';
 import { isLessonUnlocked, keyLabelVi, loadLesson } from '../lib/data';
 import { markLessonComplete, setLastLesson } from '../lib/storage';
 import type { ProgressState, TieuCatalog, TieuMap, TieuPiece } from '../types/tieu';
@@ -37,6 +38,7 @@ export function LearnPage({
   const [err, setErr] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [previewKey, setPreviewKey] = useState('Re');
+  const [justDone, setJustDone] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -102,7 +104,14 @@ export function LearnPage({
       </label>
 
       {loading && <p className="muted">Đang tải bài…</p>}
+      {!loading && !piece && !err && (
+        <div className="card"><p className="muted">Chưa tải được bài. Thử chọn bài khác đã mở khóa.</p></div>
+      )}
       {err && <p className="error">{err}</p>}
+
+      {justDone && (
+        <p className="toast">Đã đánh dấu hoàn thành — bài tiếp đã mở (nếu còn).</p>
+      )}
 
       {piece && (
         <>
@@ -156,6 +165,8 @@ export function LearnPage({
             )}
           </div>
 
+          <PitchCheck map={map} targetKey={previewKey} />
+
           <div className="card">
             <h3>Chuỗi nốt</h3>
             <div className="seq-preview">
@@ -180,10 +191,11 @@ export function LearnPage({
               className="secondary"
               onClick={() => {
                 onProgress(markLessonComplete(piece.pieceId));
+                setJustDone(true);
                 onGoAfter(piece.pieceId);
               }}
             >
-              Tôi đã thổi
+              Đánh dấu hoàn thành bài
             </button>
           </div>
         </>

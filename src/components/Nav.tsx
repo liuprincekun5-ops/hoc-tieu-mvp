@@ -4,7 +4,8 @@ import './Nav.css';
 const ITEMS: { id: ScreenId; label: string }[] = [
   { id: 'home', label: 'Nhà' },
   { id: 'learn', label: 'Học' },
-  { id: 'led', label: 'Phòng LED' },
+  { id: 'led', label: 'LED' },
+  { id: 'analyze', label: 'Phân tích' },
   { id: 'after', label: 'Sau bài' },
 ];
 

@@ -1,4 +1,4 @@
-/** Web Audio synth adapted from tieu-hoc-thu.html */
+/** Web Audio synth */
 
 let audioCtx: AudioContext | null = null;
 let osc: OscillatorNode | null = null;

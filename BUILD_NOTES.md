@@ -1,28 +1,49 @@
-# BUILD_NOTES · hoc-tieu-mvp
+# BUILD_NOTES · hoc-tieu-mvp (A+B+C)
 
 ## Đã làm
 
-- Scaffold Vite + React + TS tại `/workspace/hoc-tieu-mvp`.
-- Copy nguyên gói JSON vào `public/data/` (catalog, map, after-template, L01–L16, job_demo_01.exported).
-- 4 tab: Nhà / Học / Phòng LED / Sau bài — UI tiếng Việt, mobile-first.
-- Unlock tuần tự theo `catalog.unlockRule` + `completedIds` trong localStorage.
-- Fingering LED: `holes[8…1]` từ `xiao_g_8.map.json` (`taughtIn16`).
-- Player LED: lịch theo `tBeat`, BPM chỉnh ±4, synth sine+lowpass như `tieu-hoc-thu.html`.
-- Sau bài: slots từ `after-template.json`, seed gợi ý từ `piece.after`, persist `tieu.afterNotes.v1`.
-- Stub “Phân tích file” trên Phòng LED — không implement AMT.
+### A — Polish MVP học
+- `usePiecePlayer.playWindow({ atBeat, before=1, after=2 })` — chỉ phát ~2–4 beat.
+- `LedInject` / Sau bài / LED: truyền `atBeat` → tự phát cửa sổ.
+- UX: **Đánh dấu hoàn thành bài** (Học + LED), toast mở bài tiếp, empty state Nhà/Học.
+- Giữ ranh giới: `xiao_g_8`, 16 bài, localStorage tiến độ/ghi chú.
 
-## Khoảng trống / quyết định từ pack
+### B — Module phân tích (stub)
+- Tab **Phân tích**: upload → IndexedDB (`idbAudio.ts`).
+- Workflow `tieu.analyze.v1`: select / rerun (max 3) / enter note / skip / lock segment / lock song.
+- Stub từ duration hoặc `job_demo_01.analyze.json`; nhãn stub rõ.
+- `lockSong` → `tieu.piece.v1` → Phòng LED.
 
-1. **Lesson = piece:** Mỗi `Lxx.json` đã là `tieu.piece.v1` (không schema lesson riêng). Màn Học đọc goal/keys/events; Phòng LED phát cùng object.
-2. **Fi / Re2:** Có trong map `taughtIn16` và L11/L16 — HTML thử cũ thiếu Fi/Re2; MVP dùng freqHz từ map.
-3. **job_demo_01.exported:** Event `tBeat` không đều (0.4…21.6) — player dùng delta beat thật, không giả định 2 beat cố định.
-4. **Analyze job:** `job_demo_01.analyze.json` không copy vào runtime UI (chỉ exported piece). Upload/AMT = stub.
-5. **Tiêu Cầm Khúc:** Không đưa nội dung/HTML afterHtml bài mẫu bản quyền từ `tieu-hoc-thu.html` lesson 7.
-6. **Replay 2–4 beat:** Nút “Xem lại” mở lại toàn piece trong LED (MVP đơn giản); chưa cắt segment hẹp theo atBeat.
-7. **giao-trinh markdown:** Không render trong app — nội dung kỹ thuật đã nằm trong JSON bài + map.
+### C — Mic helper
+- `PitchCheck` + `usePitchCheck` (autocorrelation).
+- Gắn trên Học & LED; graceful khi từ chối mic.
 
-## Kiểm tra
+### Kỹ thuật
+- `base: '/hoc-tieu-mvp/'` giữ nguyên.
+- Fetch lesson: `BASE_URL + 'data/...'` string — không `new URL`.
+- Catalog/map bundled qua import JSON.
+- `npm run build` phải xanh.
 
-```bash
-cd /workspace/hoc-tieu-mvp && npm install && npm run build
-```
+## Cách kiểm tra
+
+### A — Replay cửa sổ
+1. Học → mở bài có `after.items` → LED nghe hết → Sau bài.
+2. Bấm “Xem lại quanh beat X” → LED chỉ chạy vài nốt quanh X (toast cửa sổ beat).
+3. Đánh dấu hoàn thành → Nhà thấy ✓ và bài tiếp mở.
+
+### B — Phân tích stub
+1. Tab Phân tích → “Nạp demo gói giấy” hoặc chọn file audio của bạn.
+2. Chọn đoạn unsure/empty → Chạy lại (≤3) / Nhập nốt / Khóa đoạn.
+3. Khi hết empty+unsure → **Khóa bài → Phòng LED**.
+4. DevTools → Application → IndexedDB thấy audio local.
+
+### C — Mic
+1. Học hoặc LED → Bật micro → thổi nốt đang chọn.
+2. Thấy Gần đúng / Hơi lệch / Lệch xa / Chưa nghe thấy.
+3. Từ chối quyền → vẫn học; hiện thông báo nhẹ.
+
+## Khoảng trống / quyết định
+1. Analyze là **stub** — không claim độ chính xác AMT.
+2. Replay cửa sổ theo `tBeat`; nếu không khớp float thì lấy nearest ±1..+2 event.
+3. Mic helper không lưu điểm, không chặn hoàn thành bài.
+4. Không thêm instrument khác; UI ghi “chỉ tiêu 8 lỗ hơi G”.
